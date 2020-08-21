@@ -1,0 +1,22 @@
+{
+	"videoflop-video": [
+		{
+			"PutRequest": {
+				"Item": {
+					"id": { "S": "1" },
+					"title": { "S": "Dogs in funny hats" },
+					"description": { "S": "Dogs should always wear funny hats. As such, I made this video." }
+				}
+			}
+		},
+		{
+			"PutRequest": {
+				"Item": {
+					"id": { "S": "2" },
+					"title": { "S": "What's up with cats?" },
+					"description": { "S": "In this video I discuss... cats." }
+				}
+			}
+		}
+	]
+}

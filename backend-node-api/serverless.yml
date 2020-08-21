@@ -1,0 +1,52 @@
+service: videoflop-api # Name
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-southeast-2
+  httpApi:
+    cors: true
+  environment:
+    VIDEO_TABLE_NAME: 'videoflop-video' # This variable is referenced inside the code files, and also in the CloudFormation resource template below
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+      Resource:
+        - 'arn:aws:dynamodb:ap-southeast-2:*:table/${self:provider.environment.VIDEO_TABLE_NAME}'
+
+# CloudFormation resource templates
+resources:
+  Resources:
+    # Create our DynamoDB table: videoflop-video
+    VideoDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: ${self:provider.environment.VIDEO_TABLE_NAME}
+        BillingMode: PAY_PER_REQUEST # On-demand (non-provisioned throughput)
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id # Primary key for this table is 'id'
+            KeyType: HASH
+
+# Create out Lambda functions and associated API Gateway resources, and automatically upload the code files for you
+functions:
+  # Lambda function: Get record from DynamoDB table: videoflop-video
+  videoGet:
+    handler: video-get.handler
+    events:
+      - httpApi:
+          method: GET
+          path: /video/{id}
+
+  # Lambda function: Add new record to DynamoDB table: videoflop-video
+  # videoPost:
+  #   handler: video-post/handler
+  #   events:
+  #     - httpApi:
+  #         method: POST
+  #         path: /video
