@@ -24,6 +24,8 @@ Your own computer will need a couple of things installed:
 - AWS CLI (with a configured admin user, run `aws configure`)
 - Node.js 12.x w/ NPM https://nodejs.org/en/download/
 
+Node.js is not just the language that I wrote the Lambda function in, but also the runtime that powers the Serverless framework, and Vue.js. NPM is the Node.js package manager - it manages 3rd-party dependencies for our code.
+
 
 ## Backend setup / deploy
 In a terminal: Enter these commands to get the Videoflop code and set up your serverless backend stack:
@@ -33,7 +35,7 @@ In a terminal: Enter these commands to get the Videoflop code and set up your se
 
 	cd videoflop-serverless-demo/backend-node-api
 
-	# initialise the code/dependencies that you just downloaded
+	# initialise the code that you just downloaded (download extra dependencies, etc)
 	npm install
 
 	# install the serverless framework so that you can run `serverless deploy`
