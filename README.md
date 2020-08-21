@@ -4,7 +4,7 @@ This code base is a simple demo to show off a serverless architecture, using the
 It contains:
 
 1. Backend: A node.js API built using Serverless framework, which you deploy to AWS Lambda and stores its data in DynamoDB
-2. Frontend: A Vue.js web app, which gets videos from the backend. You run this from your own computer, for now
+2. Frontend: A Vue.js web app, which gets video information from the backend. You run this from your own computer, for now
 
 What does Serverless framework do for you? Via the `serverless.yml` file, you tell it what resources you want (e.g., DynamoDB tables) and provide it with some application code, and it will create those resources, put the code in Lambda functions, and put API Gateway resources in front of the Lambda functions.
 
